@@ -11,6 +11,6 @@ camera101 does not have any complex features. You can change the camera source (
 Captures are saved to Pictures\camera101.
 
 I made camera101 because I couldn't find any picture-taking-only camera applications for my Windows 7 machine. I hope users
-like me find it useful.
+like me find it useful. 
 
 
