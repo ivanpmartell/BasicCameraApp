@@ -15,7 +15,7 @@ camera101 is:
 *  FOSS - source code is in the repo
 *  not a video-taking or screenshotting app - nobody does that better than OBS and ShareX
 
-** Captures are saved to Pictures\camera101 **
+**Captures are saved to Pictures\camera101**
 
 camera101 does not have any complex features. You can change the camera source (switch cameras), take pictures and view them.
 
