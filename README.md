@@ -8,7 +8,7 @@ bloated propietary one.
 
 camera101 is:
 
-*  lightweight - uses only 17mb of ram with a camera stream displayed
+*  lightweight - uses only 17mb of ram with a camera stream active
 *  native - C# WinForms, no UI toolkits/libraries. Uses DirectShow.
 *  aesthetically-pleasing - clean, tasteful, glossy theme
 *  dark-mode - despite running on Windows XP to 11, it is not going to burn your eyes
