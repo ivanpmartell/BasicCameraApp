@@ -11,7 +11,7 @@ namespace Domain
         void Start(IntPtr rendererHandle, Size rendererSize);
         void Stop();
         void CaptureFrame();
-        void ResizeVideoWindow(IntPtr rendererHandle, Size rendererSize);
+        void ResizeVideoWindow(Size rendererSize);
         
         event EventHandler<FrameCapturedEventArgs> FrameCaptured;
     }

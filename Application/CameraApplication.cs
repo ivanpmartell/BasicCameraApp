@@ -32,12 +32,12 @@ namespace Application
             _currentCamera.FrameCaptured += OnFrameCaptured;
         }
         
-        public void ResizeCameraWindow(IntPtr rendererHandle, Size rendererSize)
+        public void ResizeCameraWindow(Size rendererSize)
         {
             if (_currentCamera == null)
                 return;
             
-            _currentCamera.ResizeVideoWindow(rendererHandle, rendererSize);
+            _currentCamera.ResizeVideoWindow(rendererSize);
         }
         
         private void OnFrameCaptured(object sender, FrameCapturedEventArgs e)

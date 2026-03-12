@@ -9,16 +9,16 @@ namespace camera101
     {
         private readonly CameraApplication _cameraApplication;
         
-        private bool mouseInCap;
-        private Timer statusTimer;
+        private bool _mouseInCap;
+        private Timer _statusTimer;
         
         public Main()
         {
             _cameraApplication = new CameraApplication();
             InitializeComponent();
-            statusTimer = new Timer { Interval = 1000 };
-            statusTimer.Tick += StatusTimer_Tick;
-            statusTimer.Start();
+            _statusTimer = new Timer { Interval = 1000 };
+            _statusTimer.Tick += StatusTimer_Tick;
+            _statusTimer.Start();
         }
         
         private void StatusTimer_Tick(object sender, EventArgs e)
@@ -90,19 +90,19 @@ namespace camera101
 
         private void captureButton_Hover(object sender, EventArgs e)
         {
-            mouseInCap = true;
+            _mouseInCap = true;
             captureButton.Image = Properties.Resources.capactive;
         }
 
         private void captureButton_Leave(object sender, EventArgs e)
         {
-            mouseInCap = false;
+            _mouseInCap = false;
             captureButton.Image = Properties.Resources.capRed;
         }
 
         private void captureButton_UC(object sender, EventArgs e)
         {
-            captureButton.Image = mouseInCap ? Properties.Resources.capactive
+            captureButton.Image = _mouseInCap ? Properties.Resources.capactive
                                              : Properties.Resources.capRed;
         }
 
@@ -113,7 +113,7 @@ namespace camera101
 
         private void cameraDisplay_Resize(object sender, EventArgs e)
         {
-            _cameraApplication.ResizeCameraWindow(cameraDisplay.Handle, cameraDisplay.Size);
+            _cameraApplication.ResizeCameraWindow(cameraDisplay.Size);
         }
     }
     
