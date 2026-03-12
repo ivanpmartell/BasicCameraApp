@@ -1,4 +1,6 @@
-﻿namespace camera101
+﻿using System.Windows.Forms;
+
+namespace camera101
 {
     partial class Main
     {
@@ -37,14 +39,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.captureButton)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // cameraDisplay
@@ -57,16 +57,18 @@
             this.cameraDisplay.Name = "cameraDisplay";
             this.cameraDisplay.Size = new System.Drawing.Size(569, 310);
             this.cameraDisplay.TabIndex = 5;
+            this.cameraDisplay.Resize += new System.EventHandler(this.cameraDisplay_Resize);
             // 
             // sourceBox
             // 
             this.sourceBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sourceBox.DropDownWidth = 100;
             this.sourceBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.sourceBox.FormattingEnabled = true;
             this.sourceBox.Location = new System.Drawing.Point(0, 0);
             this.sourceBox.Margin = new System.Windows.Forms.Padding(0);
             this.sourceBox.Name = "sourceBox";
-            this.sourceBox.Size = new System.Drawing.Size(121, 21);
+            this.sourceBox.Size = new System.Drawing.Size(100, 21);
             this.sourceBox.TabIndex = 0;
             this.sourceBox.SelectionChangeCommitted += new System.EventHandler(this.sourceBox_SourceChanged);
             // 
@@ -129,7 +131,6 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(7);
             this.panel1.Size = new System.Drawing.Size(569, 37);
             this.panel1.TabIndex = 3;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // tableLayoutPanel2
             // 
@@ -142,7 +143,6 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.sourceBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.pictureBox3, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox2, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(16, 0, 0, 0);
@@ -156,24 +156,13 @@
             // 
             this.pictureBox3.BackgroundImage = global::camera101.Properties.Resources.captureButton;
             this.pictureBox3.Image = global::camera101.Properties.Resources.openFolderDark;
-            this.pictureBox3.Location = new System.Drawing.Point(349, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(449, 0);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(100, 23);
             this.pictureBox3.TabIndex = 5;
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Click += new System.EventHandler(this.openFolderButton_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = global::camera101.Properties.Resources.captureButton;
-            this.pictureBox2.Image = global::camera101.Properties.Resources.prefsDark;
-            this.pictureBox2.Location = new System.Drawing.Point(455, 0);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 23);
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
             // 
             // Main
             // 
@@ -190,17 +179,14 @@
             this.Name = "Main";
             this.Text = "camera101";
             this.Load += new System.EventHandler(this.Main_Load);
-            this.Shown += new System.EventHandler(this.Main_Shown);
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.captureButton)).EndInit();
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -209,7 +195,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel cameraDisplay;
         private System.Windows.Forms.PictureBox captureButton;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

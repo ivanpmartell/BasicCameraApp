@@ -33,13 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo256 - Copy.ico</ApplicationIcon>
+    <ApplicationIcon>logo256.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DirectShowLib-2005, Version=2.1.0.0, Culture=neutral, PublicKeyToken=67e7b740cdfc2d3f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\DirectShowLib-2005.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -48,10 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="color.cs" />
-    <Compile Include="controls.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Colors.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,8 +77,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="logo128.ico" />
-    <Content Include="logo256 - Copy.ico" />
     <Content Include="logo256.ico" />
     <None Include="Resources\capactive.png" />
     <None Include="Resources\capPress.png" />
@@ -110,6 +101,12 @@
     <None Include="Resources\button_soft.png" />
     <None Include="Resources\button_metal.png" />
     <None Include="Resources\bar_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj">
+      <Project>{d7dbed50-be27-4c1e-a6c6-2c478dba46c3}</Project>
+      <Name>Application</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

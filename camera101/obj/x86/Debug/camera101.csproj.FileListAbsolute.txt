@@ -1,8 +1,0 @@
-D:\Visual Studio Projects\camera101\camera101\bin\Debug\camera101.exe
-D:\Visual Studio Projects\camera101\camera101\bin\Debug\camera101.pdb
-D:\Visual Studio Projects\camera101\camera101\obj\x86\Debug\camera101.Main.resources
-D:\Visual Studio Projects\camera101\camera101\obj\x86\Debug\camera101.Properties.Resources.resources
-D:\Visual Studio Projects\camera101\camera101\obj\x86\Debug\camera101.csproj.GenerateResource.Cache
-D:\Visual Studio Projects\camera101\camera101\obj\x86\Debug\camera101.exe
-D:\Visual Studio Projects\camera101\camera101\obj\x86\Debug\camera101.pdb
-D:\Visual Studio Projects\camera101\camera101\obj\x86\Debug\camera101.csprojResolveAssemblyReference.cache
