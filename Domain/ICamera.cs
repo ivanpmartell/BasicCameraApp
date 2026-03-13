@@ -12,6 +12,8 @@ namespace Domain
         void Stop();
         void CaptureFrame();
         void ResizeVideoWindow(Size rendererSize);
+        void FlipX();
+        void FlipY();
         
         event EventHandler<FrameCapturedEventArgs> FrameCaptured;
     }

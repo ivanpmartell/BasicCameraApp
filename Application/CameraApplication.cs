@@ -39,6 +39,22 @@ namespace Application
             
             _currentCamera.ResizeVideoWindow(rendererSize);
         }
+
+        public void FlipCameraX()
+        {
+            if (_currentCamera == null)
+                return;
+            
+            _currentCamera.FlipX();
+        }
+        
+        public void FlipCameraY()
+        {
+            if (_currentCamera == null)
+                return;
+            
+            _currentCamera.FlipY();
+        }
         
         private void OnFrameCaptured(object sender, FrameCapturedEventArgs e)
         {

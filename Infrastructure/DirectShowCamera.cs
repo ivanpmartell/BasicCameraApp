@@ -55,8 +55,8 @@ namespace Infrastructure
             _filterGraph.AddFilter(_vmr9, "VMR9");
             var config = _vmr9 as IVMRFilterConfig9;
             config.SetRenderingMode(VMR9Mode.Windowless);
-            var windowless = _vmr9 as IVMRWindowlessControl9;
-            windowless.SetVideoClippingWindow(rendererHandle);
+            var windowlessControl = _vmr9 as IVMRWindowlessControl9;
+            windowlessControl.SetVideoClippingWindow(rendererHandle);
 
             _filterGraph.AddSourceFilterForMoniker(_dsDevice.Mon, null, "Camera", out var capFilter);
 
@@ -95,6 +95,54 @@ namespace Infrastructure
             var windowlessControl = _vmr9 as IVMRWindowlessControl9;
             windowlessControl?.SetVideoPosition(null, DsRect.FromRectangle(new Rectangle(Point.Empty, rendererSize)));
         }
+
+        public void FlipX()
+        {
+            var mixer = _vmr9 as IVMRMixerControl9;
+            mixer.GetOutputRect(0, out NormalizedRect currentRect);
+            if (IsXFlipped())
+            {
+                currentRect.left = 1;
+                currentRect.right = 0;
+            }
+            else
+            {
+                currentRect.left = 0;
+                currentRect.right = 1;
+            }
+            mixer.SetOutputRect(0, ref currentRect);
+        }
+
+        private bool IsXFlipped()
+        {
+            var mixer = _vmr9 as IVMRMixerControl9;
+            mixer.GetOutputRect(0, out NormalizedRect currentRect);
+            return currentRect.left == 0;
+        }
+        
+        public void FlipY()
+        {
+            var mixer = _vmr9 as IVMRMixerControl9;
+            mixer.GetOutputRect(0, out NormalizedRect currentRect);
+            if (IsYFlipped())
+            {
+                currentRect.top = 1;
+                currentRect.bottom = 0;
+            }
+            else
+            {
+                currentRect.top = 0;
+                currentRect.bottom = 1;
+            }
+            mixer.SetOutputRect(0, ref currentRect);
+        }
+
+        private bool IsYFlipped()
+        {
+            var mixer = _vmr9 as IVMRMixerControl9;
+            mixer.GetOutputRect(0, out NormalizedRect currentRect);
+            return currentRect.top == 0;
+        }
         
         public void Stop()
         {
@@ -127,7 +175,12 @@ namespace Infrastructure
 
                 CopyMemory(bitmapData.Scan0, bufferPtr, bufferSize);
                 bitmap.UnlockBits(bitmapData);
-                bitmap.RotateFlip(RotateFlipType.RotateNoneFlipX);
+
+                if (!IsXFlipped())
+                    bitmap.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                if (IsYFlipped())
+                    bitmap.RotateFlip(RotateFlipType.RotateNoneFlipY);
+
                 using (MemoryStream ms = new MemoryStream())
                 {
                     bitmap.Save(ms, ImageFormat.Jpeg);

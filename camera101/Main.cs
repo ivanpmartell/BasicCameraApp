@@ -115,6 +115,16 @@ namespace camera101
         {
             _cameraApplication.ResizeCameraWindow(cameraDisplay.Size);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           _cameraApplication.FlipCameraX();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _cameraApplication.FlipCameraY();
+        }
     }
     
     public class ComboboxItem
