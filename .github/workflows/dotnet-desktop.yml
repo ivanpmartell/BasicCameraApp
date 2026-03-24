@@ -107,7 +107,7 @@ jobs:
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: dotnet publish $env:Solution_Name -c $env:Configuration /p:Version=$env:Version /p:AssemblyVersion=$env:Version
+      run: dotnet publish $env:Solution_Name -c $env:Configuration -p:ManifestKeyFile=camera101/BasicCamera.snk /p:Version=$env:Version /p:AssemblyVersion=$env:Version
       env:
         Configuration: ${{ matrix.configuration }}
         Version: ${{ needs.prepare.outputs.Version }}
