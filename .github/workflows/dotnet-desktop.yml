@@ -99,15 +99,9 @@ jobs:
     - name: Execute unit tests
       run: dotnet test
 
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-      env:
-        Configuration: ${{ matrix.configuration }}
-
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: dotnet publish $env:Solution_Name -c $env:Configuration -p:ManifestKeyFile=camera101/BasicCamera.snk /p:Version=$env:Version /p:AssemblyVersion=$env:Version
+      run: msbuild $env:Solution_Name /p:Configuration=$env:Configuration /p:Version=$env:Version
       env:
         Configuration: ${{ matrix.configuration }}
         Version: ${{ needs.prepare.outputs.Version }}
@@ -115,7 +109,7 @@ jobs:
     - name: Zip complete build artifacts
       uses: vimtor/action-zip@v1.2
       with:
-        files: ${{ env.Wap_Project_Directory }}\bin\${{ env.Configuration }}\publish
+        files: ${{ env.Wap_Project_Directory }}\bin\${{ env.Configuration }}
         dest: basic_camera.zip
       env:
         Configuration: ${{ matrix.configuration }}
