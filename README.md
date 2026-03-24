@@ -14,3 +14,5 @@ camera101 is:
 *  not a video-taking or screenshotting app - nobody does that better than OBS and ShareX
 
 **Captures are saved to Pictures\camera101**
+
+DirectShow .NET library obtained from https://sourceforge.net/projects/directshownet/files/DirectShowNET/v2.1/
