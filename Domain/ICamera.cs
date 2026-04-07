@@ -5,6 +5,7 @@ namespace Domain
 {
     public interface ICamera
     {
+        string Name { get; }
         int Width { get; }
         int Height { get; }
         

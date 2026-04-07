@@ -11,13 +11,13 @@ namespace Infrastructure
             return new DirectShowCamera(cameraName);
         }
         
-        public Dictionary<string,string> FindCameras()
+        public Dictionary<string,ICamera> FindCameras()
         {
             var devices = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
-            var cameras = new Dictionary<string, string>();
+            var cameras = new Dictionary<string, ICamera>();
             foreach (var device in devices)
             {
-                cameras.Add(device.DevicePath, device.Name);
+                cameras.Add(device.DevicePath, CreateCamera(device.DevicePath));
             }
 
             return cameras;

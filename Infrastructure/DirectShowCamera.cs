@@ -20,6 +20,7 @@ namespace Infrastructure
 
         public event EventHandler<FrameCapturedEventArgs> FrameCaptured;
         
+        public string Name { get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
         public bool IsRunning { get; private set;  }
@@ -39,6 +40,7 @@ namespace Infrastructure
             if (_dsDevice == null)
                 throw new NullReferenceException(typeof(DsDevice).FullName);
             
+            Name = _dsDevice.Name;
             _filterGraph = new FilterGraph() as IFilterGraph2;
             _sampleGrabber = new SampleGrabber() as ISampleGrabber;
             _vmr9 = new VideoMixingRenderer9() as IBaseFilter;

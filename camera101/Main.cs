@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Application;
@@ -41,27 +42,32 @@ namespace camera101
 
         private void ReloadSources()
         {
-            var cameras = _cameraApplication.GetCameras();
-            if (cameras.Count == sourceBox.Items.Count)
+            var cameraDevices = _cameraApplication.GetCameras();
+            if (cameraDevices.Count == sourceBox.Items.Count)
                 return;
-            
-            bool addedACamera = false;
 
-            foreach (ComboboxItem item in sourceBox.Items)
+            var selectedCamera = sourceBox.SelectedItem as ComboboxItem;
+            if (selectedCamera != null && !cameraDevices.ContainsKey(selectedCamera.Value as string ?? ""))
             {
-                var cameraDevice = item.Value.ToString();
-                cameras.Remove(cameraDevice);
-            }
-            
-            foreach (var camera in cameras)
-            {
-                ComboboxItem cameraItem = new ComboboxItem { Text = camera.Value, Value = camera.Key };
-                sourceBox.Items.Add(cameraItem);
-                addedACamera = true;
+                _cameraApplication.StopCamera();
+                selectedCamera = null;
+                cameraDisplay.Refresh();
             }
 
-            if (addedACamera)
-                AdjustDropDownWidth(sourceBox);
+            sourceBox.DataSource = null;
+            var comboBoxItems = new List<ComboboxItem>();
+            foreach (var cameraDevice in cameraDevices)
+            {
+                var path = cameraDevice.Key;
+                var camera = cameraDevice.Value;
+                ComboboxItem cameraItem = new ComboboxItem { Text = camera.Name, Value = path };
+                comboBoxItems.Add(cameraItem);
+            }
+            sourceBox.DataSource = comboBoxItems;
+
+            AdjustDropDownWidth(sourceBox);
+
+            sourceBox.SelectedItem = selectedCamera;
         }
         
         private void AdjustDropDownWidth(ComboBox combo)

@@ -19,7 +19,7 @@ namespace Application
             _storageService = new FileStorageService();
         }
         
-        public Dictionary<string,string> GetCameras()
+        public Dictionary<string,ICamera> GetCameras()
         {
             return _cameraFactory.FindCameras();
         }
